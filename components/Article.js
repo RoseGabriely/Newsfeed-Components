@@ -101,6 +101,7 @@ const data = [
 //   Your component is a function that takes an article object as its only argument,
 //   and returns a DOM node looking like the one below:
 function articleMaker({ title, date, firstParagraph, secondParagraph, thirdParagraph }) {
+  // creating component elements and setting the classes as well as text contents
   let divEl = document.createElement('div');
   divEl.setAttribute('class', 'article');
 
@@ -124,6 +125,7 @@ function articleMaker({ title, date, firstParagraph, secondParagraph, thirdParag
   spanEl.setAttribute('class', 'expandButton')
   spanEl.textContent = '+';
 
+  // appending all of the component's elements to the article div that holds the component
   divEl.appendChild(h2El);
   divEl.appendChild(pEl);
   divEl.appendChild(p1);
@@ -131,13 +133,13 @@ function articleMaker({ title, date, firstParagraph, secondParagraph, thirdParag
   divEl.appendChild(p3);
   divEl.appendChild(spanEl);
 
+  // creating an event listener in which upon clicking the expandButton span element, the article--open class gets toggled onto the article div to show/hide the article
   spanEl.addEventListener('click', () => {
     divEl.classList.toggle('article-open')
   })
 
   return divEl;
 }
-console.log(articleMaker(data))
 
 //   <div class="article">
 //     <h2>{title of the article}</h2>
@@ -155,6 +157,7 @@ console.log(articleMaker(data))
 
 //   Step 4: Outside your function now, loop over the data. At each iteration you'll use your component
 //   to create a div.article element and append it to the DOM inside div.articles (see index.html).
+// iterating through the article objects and appending each of them to the div with the articles class to create a new card for each article
 data.forEach(article => {
   const articles = document.querySelector('.articles')
   articles.appendChild(articleMaker(article)) 
